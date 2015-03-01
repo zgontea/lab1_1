@@ -18,10 +18,10 @@ package pl.com.bottega.ecommerce.sales.domain.productscatalog;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.AggregateId;
+import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 
 public class ProductData {
-	private AggregateId productId;
+	private Id productId;
 	
 	private BigDecimal price;
 
@@ -37,7 +37,7 @@ public class ProductData {
 	@SuppressWarnings("unused")
 	private ProductData(){}
 	
-	ProductData(AggregateId productId, BigDecimal price, String priceCurrency, String name, String type, 
+	ProductData(Id productId, BigDecimal price, String priceCurrency, String name, String type, 
 			Date snapshotDate) {
 		this.productId = productId;
 		this.price = price;
@@ -47,7 +47,7 @@ public class ProductData {
 		this.type = type;
 	}
 
-	public AggregateId getProductId() {
+	public Id getProductId() {
 		return productId;
 	}
 

@@ -20,30 +20,36 @@ import java.math.BigDecimal;
 import pl.com.bottega.ecommerce.sales.domain.productscatalog.ProductData;
 
 public class OfferItem {
-private ProductData productData;
-	
+	private ProductData productData;
+
 	private int quantity;
-	
-	private Discount discount;
-	
+
 	private BigDecimal totalCost;
-	private String totalCostCurrency;
-	
+
+	private String currency;
+
+	// discount
+	private String discountCause;
+
+	private BigDecimal discount;
 
 	public OfferItem(ProductData productData, int quantity) {
-		this(productData, quantity, null);
+		this(productData, quantity, null, null);
 	}
-	
-	public OfferItem(ProductData productData, int quantity, Discount discount) {
+
+	public OfferItem(ProductData productData, int quantity,
+			BigDecimal discount, String discountCause) {
 		this.productData = productData;
 		this.quantity = quantity;
 		this.discount = discount;
-		
+		this.discountCause = discountCause;
+
 		BigDecimal discountValue = new BigDecimal(0);
 		if (discount != null)
-			 discountValue =  discountValue.subtract(discount.getValue());
-		
-		this.totalCost = productData.getPrice().multiply(new BigDecimal(quantity)).subtract(discountValue);
+			discountValue = discountValue.subtract(discount);
+
+		this.totalCost = productData.getPrice()
+				.multiply(new BigDecimal(quantity)).subtract(discountValue);
 	}
 
 	public ProductData getProductData() {
@@ -55,13 +61,17 @@ private ProductData productData;
 	}
 
 	public String getTotalCostCurrency() {
-		return totalCostCurrency;
+		return currency;
 	}
-	
-	public Discount getDiscount() {
+
+	public BigDecimal getDiscount() {
 		return discount;
 	}
-	
+
+	public String getDiscountCause() {
+		return discountCause;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -112,34 +122,30 @@ private ProductData productData;
 	/**
 	 * 
 	 * @param item
-	 * @param delta acceptable percentage difference 
+	 * @param delta
+	 *            acceptable percentage difference
 	 * @return
 	 */
 	public boolean sameAs(OfferItem item, double delta) {
-		if (! productData.equals(item.productData))
+		if (!productData.equals(item.productData))
 			return false;
-		
+
 		if (quantity != item.quantity)
 			return false;
-		
-		
+
 		BigDecimal max, min;
-		if (totalCost.compareTo(item.totalCost) > 0){
+		if (totalCost.compareTo(item.totalCost) > 0) {
 			max = totalCost;
 			min = item.totalCost;
-		}
-		else{
+		} else {
 			max = item.totalCost;
 			min = totalCost;
 		}
-		
+
 		BigDecimal difference = max.subtract(min);
-		BigDecimal acceptableDelta = max.multiply(new BigDecimal(delta / 100)); 
-		
+		BigDecimal acceptableDelta = max.multiply(new BigDecimal(delta / 100));
+
 		return acceptableDelta.compareTo(difference) > 0;
 	}
-
-	
-	
 
 }

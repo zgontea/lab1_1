@@ -3,8 +3,8 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 import java.math.BigDecimal;
 
 public class Discount {
-private String cause;
-	
+	private String cause;
+
 	private BigDecimal value;
 	private String valueCurrency;
 
@@ -13,15 +13,15 @@ private String cause;
 		this.value = value;
 		this.valueCurrency = valueCurrency;
 	}
-	
+
 	public String getCause() {
 		return cause;
 	}
-	
+
 	public BigDecimal getValue() {
 		return value;
 	}
-	
+
 	public String getValueCurrency() {
 		return valueCurrency;
 	}
@@ -56,6 +56,5 @@ private String cause;
 			return false;
 		return true;
 	}
-	
 
 }
