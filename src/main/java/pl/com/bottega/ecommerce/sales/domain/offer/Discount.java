@@ -1,23 +1,29 @@
 package pl.com.bottega.ecommerce.sales.domain.offer;
 
-import pl.com.bottega.ecommerce.sharedkernel.Money;
+import java.math.BigDecimal;
 
 public class Discount {
 private String cause;
 	
-	private Money value;
+	private BigDecimal value;
+	private String valueCurrency;
 
-	public Discount(String cause, Money value) {
+	public Discount(String cause, BigDecimal value, String valueCurrency) {
 		this.cause = cause;
 		this.value = value;
+		this.valueCurrency = valueCurrency;
 	}
 	
 	public String getCause() {
 		return cause;
 	}
 	
-	public Money getValue() {
+	public BigDecimal getValue() {
 		return value;
+	}
+	
+	public String getValueCurrency() {
+		return valueCurrency;
 	}
 
 	@Override

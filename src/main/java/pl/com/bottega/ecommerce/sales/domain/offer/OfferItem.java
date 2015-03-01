@@ -15,8 +15,9 @@
  */
 package pl.com.bottega.ecommerce.sales.domain.offer;
 
+import java.math.BigDecimal;
+
 import pl.com.bottega.ecommerce.sales.domain.productscatalog.ProductData;
-import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 public class OfferItem {
 private ProductData productData;
@@ -25,7 +26,8 @@ private ProductData productData;
 	
 	private Discount discount;
 	
-	private Money totalCost;
+	private BigDecimal totalCost;
+	private String totalCostCurrency;
 	
 
 	public OfferItem(ProductData productData, int quantity) {
@@ -37,21 +39,25 @@ private ProductData productData;
 		this.quantity = quantity;
 		this.discount = discount;
 		
-		Money discountValue = Money.ZERO;
+		BigDecimal discountValue = new BigDecimal(0);
 		if (discount != null)
 			 discountValue =  discountValue.subtract(discount.getValue());
 		
-		this.totalCost = productData.getPrice().multiplyBy(quantity).subtract(discountValue);
+		this.totalCost = productData.getPrice().multiply(new BigDecimal(quantity)).subtract(discountValue);
 	}
 
 	public ProductData getProductData() {
 		return productData;
 	}
 
-	public Money getTotalCost() {
+	public BigDecimal getTotalCost() {
 		return totalCost;
 	}
 
+	public String getTotalCostCurrency() {
+		return totalCostCurrency;
+	}
+	
 	public Discount getDiscount() {
 		return discount;
 	}
@@ -117,8 +123,8 @@ private ProductData productData;
 			return false;
 		
 		
-		Money max, min;
-		if (totalCost.greaterThan(item.totalCost)){
+		BigDecimal max, min;
+		if (totalCost.compareTo(item.totalCost) > 0){
 			max = totalCost;
 			min = item.totalCost;
 		}
@@ -127,10 +133,10 @@ private ProductData productData;
 			min = totalCost;
 		}
 		
-		Money difference = max.subtract(min);
-		Money acceptableDelta = max.multiplyBy(delta / 100); 
+		BigDecimal difference = max.subtract(min);
+		BigDecimal acceptableDelta = max.multiply(new BigDecimal(delta / 100)); 
 		
-		return acceptableDelta.greaterThan(difference);
+		return acceptableDelta.compareTo(difference) > 0;
 	}
 
 	
