@@ -30,13 +30,13 @@ public class ProductData {
 	
 	private Date snapshotDate;
 		
-	private ProductType type;
+	private String type;
 
 	
 	@SuppressWarnings("unused")
 	private ProductData(){}
 	
-	ProductData(AggregateId productId, Money price, String name, ProductType type, 
+	ProductData(AggregateId productId, Money price, String name, String type, 
 			Date snapshotDate) {
 		this.productId = productId;
 		this.price = price;
@@ -61,7 +61,7 @@ public class ProductData {
 		return snapshotDate;
 	}
 	
-	public ProductType getType() {
+	public String getType() {
 		return type;
 	}
 
