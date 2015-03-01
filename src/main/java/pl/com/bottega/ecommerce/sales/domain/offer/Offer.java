@@ -61,7 +61,7 @@ private List<OfferItem> availabeItems = new ArrayList<OfferItem>();
 			return false;
 		
 		for (OfferItem item : availabeItems) {
-			OfferItem sameItem = seenOffer.findItem(item.getProductData().getProductId());
+			OfferItem sameItem = seenOffer.findItem(item.getProductId());
 			if (sameItem == null)
 				return false;
 			if (!sameItem.sameAs(item, delta))
@@ -73,7 +73,7 @@ private List<OfferItem> availabeItems = new ArrayList<OfferItem>();
 
 	private OfferItem findItem(Id productId) {
 		for (OfferItem item : availabeItems){
-			if (item.getProductData().getProductId().equals(productId))
+			if (item.getProductId().equals(productId))
 				return item;
 		}
 		return null;
