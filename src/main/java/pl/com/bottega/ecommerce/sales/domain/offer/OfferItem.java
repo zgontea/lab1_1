@@ -18,12 +18,10 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
-
 public class OfferItem {
 
 	// product
-	private Id productId;
+	private String productId;
 
 	private BigDecimal productPrice;
 
@@ -44,12 +42,12 @@ public class OfferItem {
 
 	private BigDecimal discount;
 
-	public OfferItem(Id productId, BigDecimal productPrice, String productName,
+	public OfferItem(String productId, BigDecimal productPrice, String productName,
 			Date productSnapshotDate, String productType, int quantity) {
 		this(productId, productPrice, productName, productSnapshotDate, productType, quantity, null, null);
 	}
 
-	public OfferItem(Id productId, BigDecimal productPrice, String productName,
+	public OfferItem(String productId, BigDecimal productPrice, String productName,
 			Date productSnapshotDate, String productType, int quantity,
 			BigDecimal discount, String discountCause) {
 		this.productId = productId;
@@ -70,7 +68,7 @@ public class OfferItem {
 				.multiply(new BigDecimal(quantity)).subtract(discountValue);
 	}
 
-	public Id getProductId() {
+	public String getProductId() {
 		return productId;
 	}
 	

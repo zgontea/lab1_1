@@ -3,8 +3,6 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 import java.util.ArrayList;
 import java.util.List;
 
-import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
-
 public class Offer {
 private List<OfferItem> availabeItems = new ArrayList<OfferItem>();
 	
@@ -71,7 +69,7 @@ private List<OfferItem> availabeItems = new ArrayList<OfferItem>();
 		return true;
 	}
 
-	private OfferItem findItem(Id productId) {
+	private OfferItem findItem(String productId) {
 		for (OfferItem item : availabeItems){
 			if (item.getProductId().equals(productId))
 				return item;
