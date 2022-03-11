@@ -26,29 +26,30 @@ public class Offer {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (availableItems == null ? 0 : availableItems.hashCode());
+        result = prime * result + ((availableItems == null) ? 0 : availableItems.hashCode());
+        result = prime * result + ((unavailableItems == null) ? 0 : unavailableItems.hashCode());
         return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if (this == obj)
             return true;
-        }
-        if (obj == null) {
+        if (obj == null)
             return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
             return false;
-        }
         Offer other = (Offer) obj;
         if (availableItems == null) {
-            if (other.availableItems != null) {
+            if (other.availableItems != null)
                 return false;
-            }
-        } else if (!availableItems.equals(other.availableItems)) {
+        } else if (!availableItems.equals(other.availableItems))
             return false;
-        }
+        if (unavailableItems == null) {
+            if (other.unavailableItems != null)
+                return false;
+        } else if (!unavailableItems.equals(other.unavailableItems))
+            return false;
         return true;
     }
 
@@ -65,7 +66,7 @@ public class Offer {
         }
 
         for (OfferItem item : availableItems) {
-            OfferItem sameItem = seenOffer.findItem(item.getProductId());
+            OfferItem sameItem = seenOffer.findItem(item.getProduct().getProductId());
             if (sameItem == null) {
                 return false;
             }
@@ -79,7 +80,7 @@ public class Offer {
 
     private OfferItem findItem(String productId) {
         for (OfferItem item : availableItems) {
-            if (item.getProductId().equals(productId)) {
+            if (item.getProduct().getProductId().equals(productId)) {
                 return item;
             }
         }
