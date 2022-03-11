@@ -3,20 +3,20 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 public class Discount {
     
     private String discountCause;
-    
-    private Money money;
+
+    private Money value;
     
     public Discount(Money money, String discountCause) {
-        this.money = money;
+        this.value = money;
         this.discountCause = discountCause;
     }
 
     public Money getMoney() {
-        return money;
+        return value;
     }
     
     public void setMoney(Money money) {
-        this.money = money;
+        this.value = money;
     }
 
     public String getDiscountCause() {
@@ -32,7 +32,7 @@ public class Discount {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((discountCause == null) ? 0 : discountCause.hashCode());
-        result = prime * result + ((money == null) ? 0 : money.hashCode());
+        result = prime * result + ((value == null) ? 0 : value.hashCode());
         return result;
     }
     @Override
@@ -49,10 +49,10 @@ public class Discount {
                 return false;
         } else if (!discountCause.equals(other.discountCause))
             return false;
-        if (money == null) {
-            if (other.money != null)
+        if (value == null) {
+            if (other.value != null)
                 return false;
-        } else if (!money.equals(other.money))
+        } else if (!value.equals(other.value))
             return false;
         return true;
     }
