@@ -3,60 +3,60 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 import java.sql.Date;
 
 public class Product {
-    
-    private String productId;
-    private String productName;
-    private Date productSnapshotDate;
-    private String productType;
+
+    private String id;
+    private String name;
+    private Date snapshotDate;
+    private String type;
 
     private Money price;
 
-    public Product(String productId, String productName, Date productSnapshotDate, String productType, Money money) {
-        this.productId = productId;
-        this.productName = productName;
-        this.productSnapshotDate = productSnapshotDate;
-        this.productType = productType;
+    public Product(String id, String name, Date snapshotDate, String type, Money money) {
+        this.id = id;
+        this.name = name;
+        this.snapshotDate = snapshotDate;
+        this.type = type;
         this.price = money;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getId() {
+        return id;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Date getProductSnapshotDate() {
-        return productSnapshotDate;
+    public Date getSnapshotDate() {
+        return snapshotDate;
     }
 
-    public void setProductSnapshotDate(Date productSnapshotDate) {
-        this.productSnapshotDate = productSnapshotDate;
+    public void setSnapshotDate(Date snapshotDate) {
+        this.snapshotDate = snapshotDate;
     }
 
-    public String getProductType() {
-        return productType;
+    public String getType() {
+        return type;
     }
 
-    public void setProductType(String productType) {
-        this.productType = productType;
+    public void setType(String type) {
+        this.type = type;
     }
-    
-    public Money getMoney() {
+
+    public Money getPrice() {
         return price;
     }
 
-    public void setMoney(Money money) {
-        this.price = money;
+    public void setPrice(Money price) {
+        this.price = price;
     }
 
     @Override
@@ -64,10 +64,10 @@ public class Product {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((price == null) ? 0 : price.hashCode());
-        result = prime * result + ((productId == null) ? 0 : productId.hashCode());
-        result = prime * result + ((productName == null) ? 0 : productName.hashCode());
-        result = prime * result + ((productSnapshotDate == null) ? 0 : productSnapshotDate.hashCode());
-        result = prime * result + ((productType == null) ? 0 : productType.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((snapshotDate == null) ? 0 : snapshotDate.hashCode());
+        result = prime * result + ((type == null) ? 0 : type.hashCode());
         return result;
     }
 
@@ -85,26 +85,26 @@ public class Product {
                 return false;
         } else if (!price.equals(other.price))
             return false;
-        if (productId == null) {
-            if (other.productId != null)
+        if (id == null) {
+            if (other.id != null)
                 return false;
-        } else if (!productId.equals(other.productId))
+        } else if (!id.equals(other.id))
             return false;
-        if (productName == null) {
-            if (other.productName != null)
+        if (name == null) {
+            if (other.name != null)
                 return false;
-        } else if (!productName.equals(other.productName))
+        } else if (!name.equals(other.name))
             return false;
-        if (productSnapshotDate == null) {
-            if (other.productSnapshotDate != null)
+        if (snapshotDate == null) {
+            if (other.snapshotDate != null)
                 return false;
-        } else if (!productSnapshotDate.equals(other.productSnapshotDate))
+        } else if (!snapshotDate.equals(other.snapshotDate))
             return false;
-        if (productType == null) {
-            if (other.productType != null)
+        if (type == null) {
+            if (other.type != null)
                 return false;
-        } else if (!productType.equals(other.productType))
+        } else if (!type.equals(other.type))
             return false;
         return true;
-    }    
+    }
 }
